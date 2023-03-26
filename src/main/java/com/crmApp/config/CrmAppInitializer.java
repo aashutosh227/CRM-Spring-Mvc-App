@@ -7,6 +7,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.FrameworkServlet;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 
 
@@ -21,13 +22,22 @@ public class CrmAppInitializer extends AbstractDispatcherServletInitializer{
 
     @Override
     protected String[] getServletMappings() {
-        String[] map = {"/crm/*"};
+        String[] map = {"/crm/*","/crm1/*"};
         return map;
     }
 
     @Override
     protected WebApplicationContext createRootApplicationContext() {
         return null;
+    }
+
+    //Overriding dispatcher servlet creation to allow set ThrowExceptionIfNoHandlerFound=true
+    //so that we can return custom error view when No handler available for a request.
+    @Override
+    protected FrameworkServlet createDispatcherServlet(WebApplicationContext servletAppContext) {
+        DispatcherServlet ds = new DispatcherServlet(servletAppContext);
+        ds.setThrowExceptionIfNoHandlerFound(true);
+        return ds;
     }
 }
 //public class CrmAppInitializer extends WebApplicationInitializer{
