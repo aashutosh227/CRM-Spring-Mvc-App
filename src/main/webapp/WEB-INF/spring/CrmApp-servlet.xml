@@ -16,5 +16,13 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+<!--    <mvc:interceptors>-->
+<!--        <bean class="com.crmApp.interceptors.RequestLoggerInterceptors"/>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <mvc:exclude-mapping path="/admin/**"/>-->
+<!--            <bean class="com.crmApp.interceptors.RequestLoggerInterceptors"/>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
 
 </beans>
